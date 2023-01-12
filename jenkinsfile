@@ -1,0 +1,31 @@
+pipeline{
+        agent any
+            tools{
+                     git 'git'
+                     maven 'maven'
+                     jdk 'java'
+            }
+        stages{
+                stage('checkout'){
+                        steps{
+                            git 'https://github.com/beaulareddy/sample-java-programs.git'
+                            echo 'inside checkout'
+                        }
+                    }
+                stage('build'){
+                        steps{
+                        sh 'mvn clean install -f pom.xml'
+                        echo 'inside build'
+                        }
+                    }
+                
+                    
+            
+                  
+                    stage("Build-package"){
+                steps{
+                     sh "mvn clean install"    
+                }
+        }
+      }
+}
